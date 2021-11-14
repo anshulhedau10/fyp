@@ -10,6 +10,7 @@ app.static_folder = 'static'
 app.config['UPLOAD_PATH'] = "static/dataset/"
 app.config['UPLOAD_EXTENSIONS'] = ['.csv']
 
+result_filename = "result.csv"
 
 @app.route("/")
 def index():
@@ -28,18 +29,20 @@ def upload_file():
         uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         print("Saved file successfully")
         ml_logic.machinelearning()
-        return redirect('/downloadfile/'+ filename)
+        return redirect('/downloadfile/'+ result_filename)
+        
     else:
         return render_template("warning.html")
     return redirect(url_for('index'))
 
-@app.route("/downloadfile/<filename>", methods=["GET"])
-def download_file(filename):
-    return render_template('download.html',value=filename)
 
-@app.route("/return-files/<filename>")
-def return_files_tut(filename):
-    file_path = os.path.join(app.config['UPLOAD_PATH'], filename)
+@app.route("/downloadfile/<result_filename>", methods=["GET"])
+def download_file(result_filename):
+    return render_template('download.html',value=result_filename)
+
+@app.route("/return-files/<result_filename>")
+def return_files_tut(result_filename):
+    file_path = os.path.join(app.config['UPLOAD_PATH'], result_filename)
     return send_file(file_path, as_attachment=True, attachment_filename="ResultFile.csv")
 
 if __name__ == "__main__":
