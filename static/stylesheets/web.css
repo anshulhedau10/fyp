@@ -1,24 +1,11 @@
 
     * {
         font-family: 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
     }
-    .heading {
-        text-align: center;
-        margin-top: 100px;
-    }
-    h1 {
-        font-size: 40pt;
-    }
-    p {
-        font-size: 24pt;
-    }
-    .p1 {
-        text-align: left;
-        font-size: 18pt;
-        padding-left: 100px;
+    body {
+        background-color: #fffaf0;
+        padding :50px;
     }
     a {
         text-decoration: none;
