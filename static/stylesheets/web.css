@@ -13,7 +13,6 @@
             opacity: 1
         }
     }
-    
     @-webkit-keyframes fadeInUp {
         from {
             transform: translate3d(0,40px,0)
@@ -24,7 +23,6 @@
             opacity: 1
         }
     }
-    
     .animated {
         animation-duration: 1s;
         animation-fill-mode: both;
@@ -41,11 +39,9 @@
         animation-name: fadeInUp;
         -webkit-animation-name: fadeInUp;
     }
-      
     a {
         text-decoration: none;
     }
     li {
         list-style: none;
     }
-

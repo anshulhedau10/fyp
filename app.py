@@ -14,9 +14,11 @@ result_filename = "result.csv"
 
 @app.route("/")
 def index():
-
-    # Render HTML
     return render_template("index.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route("/", methods=['POST'])
 def upload_file():
@@ -32,8 +34,8 @@ def upload_file():
         return redirect('/downloadfile/'+ result_filename)
         
     else:
-        return render_template("warning.html")
-    return redirect(url_for('index'))
+        return redirect(url_for('index'))
+    
 
 
 @app.route("/downloadfile/<result_filename>", methods=["GET"])

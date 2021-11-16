@@ -1,18 +1,3 @@
-<!--Group No: M-2
-    @author1: Anshul Hedau    
-        Roll no: A-44
-        Registration Number:18010032
-	@author2: Prajwal Hatwar
-        Roll no: A-62
-        Registration Number:18010010
-    @author3: Shreyas Rajurkar
-        Roll no: A-73
-        Registration Number:18010221
-    @author4: Juli Khobragade
-        Roll no: B-109
-        Registration Number:18010024
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="icon" href="../static/images/logo.png" type="image/icon type">
-    <title>Final Year Project</title> 
+    <title>About</title> 
 </head>
 <body>
     <nav class="navbar fixed-top navbar-expand navbar-dark shadow" style="background-color: #212121;">
@@ -40,10 +25,10 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about">About</a>
+                            <a class="nav-link active" href="/about">About</a>
                         </li>
                     </ul>
                 </div>
@@ -53,36 +38,94 @@
     
     <div class="animated animatedFadeInUp fadeInUp">
         <div class="container fw-bold" style="font-size:40pt; text-align:center; margin-top:150px; color: #131F0D;">
-            Find out COVID-19 risk prediction for patients.<br><br>       
+            About us.<br><br>       
         </div>
 
-        <div class="card border-0 col-sm-6 mx-auto" style="background-color: #FCF9F1; color: #041E49;">
-            <div class="card-body mx-5 my-3">
-                <h3 class="card-title text-center">Upload</h3>
-                <p class="card-text">1. Upload the csv file
-                    <br>2. Click Upload<br>3. Click Downlaod button<br><br>
-                    You can download the file format from here.
+        <div class="card border-0 col-sm-8 mx-auto" style="background-color: #EEF4F9;">
+            <div class="card-body mx-5 my-5" style="color: #131F0D;">
+                <h3 class="card-title">Final Year Project</h3><br>
+                <h5 class="card-subtitle mb-2">Title: Predicting high risk COVID-19 patients.</h5>
+                <p class="card-text" >
+                    <ul>
+                        <li>Made by Anshul Hedau, Prajwal Hatwar, Shreyas Rajurkar, Juli Khobragade.</li>
+                        <li>The objective of this project is to predict if a COVID-19 patient will have a high risk of death in near future.</li>
+                        <li>The machine learning model is based on Random Forest Classifier, which takes initial health data of the patient as input.</li>
+                        <li>The project is a web app built using python flask and gunicorn.
+                    </ul>
                 </p>
-                    <div class="text-center"><button type="button" class="btn btn-light btn-sm shadow-sm rounded-pill border-0 mx-2 mb-3" style="color: #1C1D06; background-color: #E6E4C0;">
-                        file format
-                    </button></div>
-                <form action = "/" method = "POST" enctype = "multipart/form-data" id="upload" onsubmit="myFunction()">
-                    <input type="file" oninvalid="alert('Please choose a csv file!');" class="form-control border-0 shadow-sm" style="color: #131F0D;" name="file" id="customFile" accept=".csv" required><br>
-                    <div class="text-center mt-3">
-                        <!--<input type="submit" value="Submit" onclick="myFunction()">-->
-                        <button type="submit" value="Submit" id="btnFetch" class='btn btn-lg btn-light shadow-sm rounded-pill border-0 fw-bold' style="color: #002117; background-color: #AEF0D6; width: 10rem;">
-                            <small>Upload</small>
-                        </button><br>
-                    </div>
-                </form> 
+            </div>
+        </div>
+
+        <div class="card border-0 col-sm-8 mx-auto mt-lg-5" style="background-color: #EEF4F9;">
+            <div class="card-body mx-5 my-5" style="color: #131F0D;">
+                <h3 class="card-title">How to run this app on your local machine</h3><br>
+                <p class="card-text">
+                    <b>Prerequisites:</b>
+                    <ul>
+                        <li>Python >=3.8.3</li>
+                        <li>Git >=2.33.1.windows.1</li>
+                    </ul>
+                    <ol>
+                        <li>
+                            <b>PROJECT SETUP</b><br>
+                            If you don’t have this project.
+                            <ul>
+                                <li>
+                                    Go to the desired location where you want to save the project.<br>
+                                    <div class="mark">> cd "your_desired_path"</div>
+                                </li>
+                                <li>
+                                    Clone the project from the repo.<br>
+                                    <div class="mark">> git clone <a href="https://www.github.com/anshulhedau10/fyp">https://www.github.com/anshulhedau10/fyp</a><br>
+                                    > cd fyp/</div>
+                                </li>
+                            </ul>
+                            If you have this project already.
+                            <ul>
+                                <li>
+                                    Go to the project’s location.<br>
+                                    <div class="mark">> cd "your_project’s_path"</div>
+                                </li>
+                                <li>
+                                    Pull the project from the repo.<br>
+                                    <div class="mark">> git pull origin</div>
+                                </li>
+                            </ul>
+                        </li><br>
+                        <li>
+                            <b>PYTHON VIRTUAL ENVIRONMENT SETUP</b><br>
+                            <ul>
+                                <li>
+                                    Create a python virtual environment.<br>
+                                    <div class="mark">> python -m venv venv</div>
+                                </li>
+                                <li>
+                                    Activate the virtual environment.<br>
+                                    <div class="mark">> source venv/scripts/activate</div>
+                                </li>
+                            </ul>
+                        </li><br>
+                        <li>
+                            <b>INSTALL DEPENDENCIES</b><br>
+                            <div class="mark">> pip install -r requirements.txt</div>
+                        </li><br>
+                        <li>
+                            <b>RUN THE APP</b><br>
+                            Run this command to run the app.<br>
+                            <div class="mark">> python app.py</div>
+                        </li>
+
+                    </ol>
+                        
+                        
+                </p>
             </div>
         </div>
     </div>
-
     
     <!-- Footer -->
     <div style="padding-top: 100px;">
-    <footer class="text-center text-lg-start text-dark" style="background-color: #FCF9F1;">
+    <footer class="text-center text-lg-start" style="background-color: #EEF4F9;">
         
         <!-- Social media -->
         <section class="d-flex pt-2">
