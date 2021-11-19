@@ -5,3 +5,4 @@ function myFunction() {
     alert("File upload succesfull! Please wait for 2 mins.");
   }
 }
+

@@ -290,7 +290,11 @@ def machinelearning():
     #result.head(20)
 
     # # Exporting result
-
     # In[41]:
     result.to_csv((base_path/"../static/dataset/result.csv").resolve(), encoding='utf-8', index=False)
-    return 1
+
+    # # Exporting list of emails for email sending
+    to_send_email = result[result.high_risk== "YES"] #list of patients with high_risk=="YES"
+    to_send_email_list = to_send_email["email"].tolist()
+
+    return to_send_email_list

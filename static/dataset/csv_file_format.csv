@@ -1,0 +1,4 @@
+id,sex,intubed,pneumonia,age,pregnancy,diabetes,copd,asthma,hypertension,cardiovascular,obesity,renal_chronic,tobacco,email
+1234,1,2,2,54,2,2,2,2,2,2,1,2,2,example1@gmail.com
+5678,1,2,2,60,2,1,2,2,1,1,2,2,2,example2@gmail.com
+91011,1,1,1,39,2,2,2,2,2,2,1,2,2,example3@gmail.com

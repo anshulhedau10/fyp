@@ -3,6 +3,14 @@
         font-family: 'Open Sans', sans-serif;
         box-sizing: border-box;
     }
+    .inline-icon1 {
+        vertical-align: bottom;
+        font-size: 28px !important;
+    }
+    .inline-icon2 {
+        vertical-align: bottom;
+        font-size: 26px !important;
+    }
     @keyframes fadeInUp {
         from {
             transform: translate3d(0,40px,0)
@@ -41,7 +49,4 @@
     }
     a {
         text-decoration: none;
-    }
-    li {
-        list-style: none;
     }
