@@ -43,25 +43,30 @@
 
     <div class="animated animatedFadeInUp fadeInUp" style="color: #370B1E;">
         <div class="card border-0 col-sm-6 mx-auto" style="background-color: #F7F2FA;">
-            <div class="card-body mx-5 my-3">
-                <h3 class="card-title text-center">Download</h3><br>
-                <p class="card-text text-center">Result is ready. Click download button below.</p><br>
+            <div class="card-body mx-5 my-3 text-center">
+                <h3 class="card-title">Download</h3><br>
+                <p class="card-text">Result is ready. Click download button below.</p><br>
                 <div class="text-center">
-                <a href="/return-files/{{value}}"><button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
-                <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
-                </button></a>
+                <a href="/return-files/{{value}}">
+                    <button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
+                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
+                    </button>
+                </a>
                 </div>
             </div>
         </div>
+        <div class="card border-0 col-sm-6 mx-auto mt-5" style="background-color: #F7F2FA;">
+            <div class="card-body mx-5 my-3 text-center">
+                <h3 class="card-title">Send Email</h3><br>
+                <p class="card-text">Send emails to the patients with high_risk == "YES".</p><br>
+                <a href="/sendemail/">
+                    <button class="btn btn-lg shadow-sm rounded-pill border-0 fw-bold" style="background-color: #D5E7F5;" type="button">
+                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">email</span>Send email</p>
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>    
-    
-    <div class="text-center m-3">
-        <p>Send emails to the patients with high_risk == "YES".</p>
-        <a href="/sendemail/"><button class="btn border-0 rounded-pill shadow-sm fs-5 fw-bold" style="background-color: #D5E7F5;" type="button">
-            <p class="m-3"><span class="inline-icon1 material-icons-outlined me-2">email</span>Send email</p>
-        </button></a>
-    </div>
-
     
 
     <!-- Footer -->

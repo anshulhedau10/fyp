@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, abort, send_file
+from flask import Flask, render_template, request, redirect, url_for, send_file
 from werkzeug.utils import secure_filename
 import os
 import ml_logic
@@ -23,10 +23,11 @@ app.static_folder = 'static'
 app.config['UPLOAD_PATH'] = "static/dataset/"
 app.config['UPLOAD_EXTENSIONS'] = [".csv"]
 
-users = ['hatwarprajwal@gmail.com', 'shreyasrajurkar13@gmail.com', 'anshulhedau2001@gmail.com', 'julikhobragade923@gmail.com']
+users = [['anshulhedau2001@gmail.com', 'Anshul Hedau'], ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar']]#, ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
 result_filename = "result.csv"
 csv_file_format_filename = "csv_file_format.csv"
-to_send_email_list = []
+input_data_filename = "input_data.csv"
+to_send_email_list = [] #format: [['email', 'name'], ... ]
 
 @app.route("/")
 def index():
@@ -58,11 +59,14 @@ def download_file(result_filename):
 
 @app.route("/return-files/<result_filename>")
 def return_files_tut(result_filename):
-    file_path = os.path.join(app.config["UPLOAD_PATH"], result_filename)
+    result_filepath = os.path.join(app.config["UPLOAD_PATH"], result_filename)
+    input_data_filepath = os.path.join(app.config["UPLOAD_PATH"], input_data_filename)
+
     try:
-        return send_file(file_path, as_attachment=True, download_name="ResultFile.csv")
-    except FileNotFoundError:
-        return "Result file not available!"
+        return send_file(result_filepath, as_attachment=True, download_name="ResultFile.csv")
+    except:
+        return "Either the file is already downloaded or the file is not available! Please visit homepage."
+    
 
 @app.route("/downloadcsv/", methods=["GET"])
 def downloadcsv():
@@ -74,21 +78,24 @@ def downloadcsv():
 
 @app.route("/sendemail/")
 def sendemail():
-    global to_send_email_list
-    global users
+    global to_send_email_list, users
+    if len(to_send_email_list)==0 or len(users)==0:
+        return "Email already sent!"
+
     with mail.connect() as conn:
         for user in users:
-            message = "Hello you have a high chance of COVID-19 in near future! Chill, april fool."
-            subject = "COVID-19 status."
-            msg = Message(body=message, subject=subject, recipients=[user])
-            '''
+            message = "Hello " + str(user[1])
+            subject = "Fightcovid COVID-19 status."
+            msg = Message(body=message, subject=subject, recipients=[user[0]])
+            #msg.html = f"<h2>Hello { user[1] },</h2><h3><b>You have a high risk of COVID-19 based on your health condition.</b></h3><br><br><p>The result file is attached below.</p><br>--Thanks."
+            msg.html = render_template('email.html', name = user[1])
             with app.open_resource(os.path.join(app.config["UPLOAD_PATH"], result_filename)) as fp:
                 msg.attach("ResultFile.csv", "text/csv", fp.read())
-            '''
+            
             conn.send(msg)
     
-    to_send_email_list = []
-    users = []
+    to_send_email_list.clear()
+    users.clear()
     return "Sent"
     
 if __name__ == "__main__":

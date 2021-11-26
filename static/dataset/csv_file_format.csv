@@ -1,4 +1,3 @@
-id,sex,intubed,pneumonia,age,pregnancy,diabetes,copd,asthma,hypertension,cardiovascular,obesity,renal_chronic,tobacco,email
-1234,1,2,2,54,2,2,2,2,2,2,1,2,2,example1@gmail.com
-5678,1,2,2,60,2,1,2,2,1,1,2,2,2,example2@gmail.com
-91011,1,1,1,39,2,2,2,2,2,2,1,2,2,example3@gmail.com
+id,name,email,sex,intubed,pneumonia,age,pregnancy,diabetes,copd,asthma,hypertension,cardiovascular,obesity,renal_chronic,tobacco
+167386,Lenna Wohlers,example1@xyz.com,1,2,2,54,2,2,2,2,2,2,1,2,2
+0d01b5,Rickey Sadlier,example2@xyz.com,1,2,2,60,2,1,2,2,1,1,2,2,2
