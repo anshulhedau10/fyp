@@ -94,8 +94,8 @@ def sendemail():
             
             conn.send(msg)
     
-    to_send_email_list.clear()
-    users.clear()
+    to_send_email_list = []
+    users = []
     return "Sent"
     
 if __name__ == "__main__":
