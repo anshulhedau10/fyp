@@ -5,15 +5,14 @@ import ml_logic
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-mail = Mail(app)
 
 # configuration of mail
 app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
+app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = 'finalyrproject001@gmail.com'
 app.config['MAIL_PASSWORD'] = '9424772300'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_DEFAULT_SENDER'] = 'finalyrproject001@gmail.com'
 app.config['MAIL_ASCII_ATTACHMENTS'] = True
 mail = Mail(app)
@@ -23,7 +22,7 @@ app.static_folder = 'static'
 app.config['UPLOAD_PATH'] = "static/dataset/"
 app.config['UPLOAD_EXTENSIONS'] = [".csv"]
 
-users = [['anshulhedau2001@gmail.com', 'Anshul Hedau'], ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar']]#, ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
+users = [['anshulhedau2001@gmail.com', 'Anshul Hedau']]#, ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar'], ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
 result_filename = "result.csv"
 csv_file_format_filename = "csv_file_format.csv"
 input_data_filename = "input_data.csv"
@@ -49,6 +48,7 @@ def upload_file():
         uploaded_file.save(os.path.join(app.config["UPLOAD_PATH"], filename))
         print("Saved file successfully")
         to_send_email_list = ml_logic.machinelearning() #returning list of emails of patients with high_risk=="YES"
+        print(to_send_email_list[:5])
         return redirect("/downloadfile/"+ result_filename) 
     else:
         return redirect(url_for('index'))
@@ -60,7 +60,6 @@ def download_file(result_filename):
 @app.route("/return-files/<result_filename>")
 def return_files_tut(result_filename):
     result_filepath = os.path.join(app.config["UPLOAD_PATH"], result_filename)
-    input_data_filepath = os.path.join(app.config["UPLOAD_PATH"], input_data_filename)
 
     try:
         return send_file(result_filepath, as_attachment=True, download_name="ResultFile.csv")
