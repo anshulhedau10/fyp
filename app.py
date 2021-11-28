@@ -22,7 +22,7 @@ app.static_folder = 'static'
 app.config['UPLOAD_PATH'] = "static/dataset/"
 app.config['UPLOAD_EXTENSIONS'] = [".csv"]
 
-users = [['anshulhedau2001@gmail.com', 'Anshul Hedau']]#, ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar'], ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
+users = [['anshulhedau2001@gmail.com', 'Anshul Hedau'], ['hatwarprajwal@gmail.com', 'Prajwal Hatwar']]#, ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar'], ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
 result_filename = "result.csv"
 csv_file_format_filename = "csv_file_format.csv"
 input_data_filename = "input_data.csv"
@@ -93,8 +93,8 @@ def sendemail():
             
             conn.send(msg)
     
-    to_send_email_list = []
-    users = []
+    #to_send_email_list = []
+    #users = []
     return "Sent"
     
 if __name__ == "__main__":
