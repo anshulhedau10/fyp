@@ -77,7 +77,8 @@ def downloadcsv():
 
 @app.route("/sendemail/")
 def sendemail():
-    global to_send_email_list, users
+    global to_send_email_list
+    global users
     if len(to_send_email_list)==0 or len(users)==0:
         return "Email already sent!"
 
