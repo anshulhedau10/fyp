@@ -13,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="icon" href="../static/images/logo.png" type="image/x-png">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-png">
     <title>Download</title> 
   
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #212121;">
         <div class="container-fluid mx-4">
-            <a class="navbar-brand text-white" href="/"><img src="../static/images/logo.png" alt="FIGHT COVID logo" class="d-inline-block align-text-top me-3" width="25px" height="25px">FIGHT COVID</a>
+            <a class="navbar-brand text-white" href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="FIGHT COVID logo" class="d-inline-block align-text-top me-3" width="25px" height="25px">FIGHT COVID</a>
             <button class="navbar-toggler text-white rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="material-icons-outlined">menu</span>
             </button>
@@ -42,30 +42,54 @@
     </div>
 
     <div class="animated animatedFadeInUp fadeInUp" style="color: #370B1E;">
-        <div class="card border-0 col-sm-6 mx-auto" style="background-color: #F7F2FA;">
-            <div class="card-body mx-5 my-3 text-center">
-                <h3 class="card-title">Download</h3><br>
-                <p class="card-text">Result is ready. Click download button below.</p><br>
-                <div class="text-center">
-                <a href="/return-files/{{value}}">
-                    <button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
-                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
-                    </button>
-                </a>
+        <div class="row justify-content-center">
+
+            <div class="col-sm-4 me-3">
+                <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
+                    <div class="card-body mx-5 my-3">
+                        <h3 class="card-title">ML Model results</h3><br>
+                        <p class="card-text fw-bold">Accuracy = {{ accuracy }}.<br>
+                            <br>ROC AUC Score = {{ ROCAUC }}.<br>
+                            <br><img src="{{ url_for('static', filename='images/roc_curve.png') }}" class="rounded img-fluid" alt="ROC Curve"><br>
+                            <br>Confusion Matrix = <br>
+                            [{{ confusionMatrix[0][0] }}, {{ confusionMatrix[0][1] }}]<br>
+                            [{{ confusionMatrix[1][0] }}, {{ confusionMatrix[1][1] }}]<br>
+                            <br><img src="{{ url_for('static', filename='images/confusionmatrix.png') }}" class="rounded img-fluid" alt="ROC Curve">
+                        </p><br>
+                        
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="card border-0 col-sm-6 mx-auto mt-5" style="background-color: #F7F2FA;">
-            <div class="card-body mx-5 my-3 text-center">
-                <h3 class="card-title">Send Email</h3><br>
-                <p class="card-text">Send emails to the patients with high_risk == "YES".</p><br>
-                <a href="/sendemail/">
-                    <button class="btn btn-lg shadow-sm rounded-pill border-0 fw-bold" style="background-color: #D5E7F5;" type="button">
-                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">email</span>Send email</p>
-                    </button>
-                </a>
-            </div>
-        </div>
+
+            <div class="col-sm-4 ms-3">
+                <div class="row">
+                    <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Download</h3><br>
+                            <p class="card-text">Result is ready. Click download button below.</p><br>
+                            <a href="/return-file/">
+                                <button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
+                                    <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card border-0 mx-auto mt-5" style="background-color: #F7F2FA;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Send Email</h3><br>
+                            <p class="card-text">Send emails to the patients having, High Risk = YES.</p><br>
+                            <a href="/sendemail/">
+                                <button class="btn btn-lg shadow-sm rounded-pill border-0 fw-bold" style="background-color: #D5E7F5;" type="button">
+                                    <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">email</span>Send email</p>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
     </div>    
     
 
@@ -76,14 +100,14 @@
             <!-- Social media -->
             <div class="row mx-4 pt-2">
                 <div class="col">
-                Connect with us:
-                    <a href="https://github.com/anshulhedau10/fyp" target="blank" class="text-dark mx-4">
+                    Connect with us:
+                    <a href="https://github.com/anshulhedau10/fyp" target="_blank" class="text-dark mx-4">
                         <i class="bi bi-github"></i>
                     </a>
                 </div>
                 <div class="col text-center">
-                This app is deployed on Heroku, a Salesforce Platform.
-                <img src="../static/images/salesforce.png" style="width: 30px; height: 20px;">
+                    This app is deployed on Heroku, a Salesforce Platform.
+                    <img src="{{ url_for('static', filename='images/salesforce.png') }}" style="width: 30px; height: 20px;">
                 </div>
                 <div class="col text-end">
                     YCCE, Nagpur
@@ -103,10 +127,10 @@
                             <div class="col-md-1 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-1 text-center">
                                 <!-- Links -->
                                 <h6 class="text-uppercase fw-bold">Contact</h6>
-                                <p><a class="text-reset" href="https://www.linkedin.com/in/anshulhedau10/"><i class="bi bi-linkedin ms-2 me-1"></i>Anshul</a>
-                                <a class="text-reset" href="https://www.linkedin.com/in/prajwalhatwar2799/"><i class="bi bi-linkedin ms-2 me-1"></i>Prajwal</a>
-                                <a class="text-reset" href="https://www.linkedin.com/in/shreyas-rajurkar-1049aa1ba/"><i class="bi bi-linkedin ms-2 me-1"></i>Shreyas</a>
-                                <a class="text-reset" href=""><i class="bi bi-linkedin ms-2 me-1"></i>Juli</a></p>
+                                <p><a class="text-reset" href="https://www.linkedin.com/in/anshulhedau10/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Anshul</a>
+                                <a class="text-reset" href="https://www.linkedin.com/in/prajwalhatwar2799/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Prajwal</a>
+                                <a class="text-reset" href="https://www.linkedin.com/in/shreyas-rajurkar-1049aa1ba/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Shreyas</a>
+                                <a class="text-reset" href="" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Juli</a></p>
                             </div>
                         </div>
                     </div>
@@ -123,4 +147,3 @@
     <script>includeHTML();</script>
 </body>
 </html>
-

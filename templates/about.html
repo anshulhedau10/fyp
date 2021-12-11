@@ -13,13 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="icon" href="../static/images/logo.png" type="image/x-png">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-png">
     <title>About</title> 
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #212121;">
         <div class="container-fluid mx-4">
-            <a class="navbar-brand text-white" href="/"><img src="../static/images/logo.png" alt="FIGHT COVID logo" class="d-inline-block align-text-top me-3" width="25px" height="25px">FIGHT COVID</a>
+            <a class="navbar-brand text-white" href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="FIGHT COVID logo" class="d-inline-block align-text-top me-3" width="25px" height="25px">FIGHT COVID</a>
             <button class="navbar-toggler text-white rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="material-icons-outlined">menu</span>
             </button>
@@ -48,7 +48,7 @@
                 <p class="card-text" >
                     <ul>
                         <li>Made by Anshul Hedau, Prajwal Hatwar, Shreyas Rajurkar, Juli Khobragade.</li><br>
-                        <li>The objective of this project is to predict if a COVID-19 patient will have a high risk of death in near future.</li><br>
+                        <li>The objective of this project is to predict if a COVID-19 patient will have a high risk of severe COVID-19 in near future.</li><br>
                         <li>The machine learning model is based on Random Forest Classifier, which takes initial health data of the patient as input.</li><br>
                         <li>The project is a web app built using python flask and gunicorn.
                     </ul>
@@ -134,13 +134,13 @@
         <div class="row mx-4 pt-2">
             <div class="col">
             Connect with us:
-                <a href="https://github.com/anshulhedau10/fyp" target="blank" class="text-dark mx-4">
+                <a href="https://github.com/anshulhedau10/fyp" target="_blank" class="text-dark mx-4">
                     <i class="bi bi-github"></i>
                 </a>
             </div>
             <div class="col text-center">
             This app is deployed on Heroku, a Salesforce Platform.
-            <img src="../static/images/salesforce.png" style="width: 30px; height: 20px;">
+            <img src="{{ url_for('static', filename='images/salesforce.png') }}" style="width: 30px; height: 20px;">
             </div>
             <div class="col text-end">
                 YCCE, Nagpur
@@ -160,10 +160,10 @@
                         <div class="col-md-1 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-1 text-center">
                             <!-- Links -->
                             <h6 class="text-uppercase fw-bold">Contact</h6>
-                            <p><a class="text-reset" href="https://www.linkedin.com/in/anshulhedau10/"><i class="bi bi-linkedin ms-2 me-1"></i>Anshul</a>
-                            <a class="text-reset" href="https://www.linkedin.com/in/prajwalhatwar2799/"><i class="bi bi-linkedin ms-2 me-1"></i>Prajwal</a>
-                            <a class="text-reset" href="https://www.linkedin.com/in/shreyas-rajurkar-1049aa1ba/"><i class="bi bi-linkedin ms-2 me-1"></i>Shreyas</a>
-                            <a class="text-reset" href=""><i class="bi bi-linkedin ms-2 me-1"></i>Juli</a></p>
+                            <p><a class="text-reset" href="https://www.linkedin.com/in/anshulhedau10/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Anshul</a>
+                            <a class="text-reset" href="https://www.linkedin.com/in/prajwalhatwar2799/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Prajwal</a>
+                            <a class="text-reset" href="https://www.linkedin.com/in/shreyas-rajurkar-1049aa1ba/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Shreyas</a>
+                            <a class="text-reset" href="" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Juli</a></p>
                         </div>
                     </div>
                 </div>
