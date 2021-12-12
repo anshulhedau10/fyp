@@ -94,7 +94,7 @@ def sendemail():
         return "Email already sent!"
 
     with mail.connect() as conn:
-        for user in users:
+        for user in to_send_email_list:
             message = "Hello " + str(user[1])
             subject = "Fightcovid COVID-19 status."
             msg = Message(body=message, subject=subject, recipients=[user[0]])
