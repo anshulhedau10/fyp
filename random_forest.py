@@ -36,6 +36,7 @@ rf.fit(x_train_oversampled, y_train_oversampled)
 y_pred = rf.predict(x_test)
 
 # Results before
+print("Results before feature selection:\n")
 false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
 roc_auc = auc(false_positive_rate, true_positive_rate)
 roc_auc = round(roc_auc, 4)
@@ -53,6 +54,7 @@ x_train_imp = x_train_oversampled[selected_feat]
 x_test_imp = x_test[selected_feat]
 
 # Results after
+print("Results after feature selection:\n")
 rf_imp = RandomForestClassifier(n_estimators = 100, random_state = 42, bootstrap = True)
 rf_imp.fit(x_train_imp, y_train_oversampled)
 y_pred = rf_imp.predict(x_test_imp)

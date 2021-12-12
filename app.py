@@ -110,12 +110,15 @@ def sendemail():
     #to_send_email_list = []
     #users = []
     
+    for file in os.scandir("static/images/graphs"):
+        try:
+            os.remove(file.path)
+        except:
+            print("Folder encountered")
     return "Sent"
     
-@app.after_response
-def maintenance():
-    for file in os.scandir("static/images/graphs"):
-        os.remove(file.path)
+#@app.after_response
+#def maintenance():
     
 
     
