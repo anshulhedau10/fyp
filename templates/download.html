@@ -1,149 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/web.css') }}" /> 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/x-png">
-    <title>Download</title> 
-  
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: #212121;">
-        <div class="container-fluid mx-4">
-            <a class="navbar-brand text-white" href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="FIGHT COVID logo" class="d-inline-block align-text-top me-3" width="25px" height="25px">FIGHT COVID</a>
-            <button class="navbar-toggler text-white rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="material-icons-outlined">menu</span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-  
-    <div class="container fw-bold" style="font-size:40pt; text-align:center; margin-top:150px; color: #370B1E;">
-        Find out COVID-19 risk prediction for patients.<br><br>       
-    </div>
+{% extends 'base.html' %}
+{% block body %}
 
     <div class="animated animatedFadeInUp fadeInUp" style="color: #370B1E;">
-        <div class="row justify-content-center">
-
-            <div class="col-sm-4 me-3">
-                <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
-                    <div class="card-body mx-5 my-3">
-                        <h3 class="card-title">ML Model results</h3><br>
-                        <p class="card-text fw-bold">Accuracy = {{ accuracy }}.<br>
-                            <br>ROC AUC Score = {{ ROCAUC }}.<br>
-                            <br><img src="{{ url_for('static', filename='images/roc_curve.png') }}" class="rounded img-fluid" alt="ROC Curve"><br>
-                            <br>Confusion Matrix = <br>
-                            [{{ confusionMatrix[0][0] }}, {{ confusionMatrix[0][1] }}]<br>
-                            [{{ confusionMatrix[1][0] }}, {{ confusionMatrix[1][1] }}]<br>
-                            <br><img src="{{ url_for('static', filename='images/confusionmatrix.png') }}" class="rounded img-fluid" alt="ROC Curve">
-                        </p><br>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 ms-3">
-                <div class="row">
+        <div class="container fw-bold" style="font-size:40pt; text-align:center; margin-top:100px; color: #370B1E;">
+            Find out COVID-19 risk prediction for patients.<br><br>       
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-5 me-3">
                     <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
-                        <div class="card-body mx-3 my-3 text-center">
-                            <h3 class="card-title">Download</h3><br>
-                            <p class="card-text">Result is ready. Click download button below.</p><br>
-                            <a href="/return-file/">
-                                <button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
-                                    <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
-                                </button>
-                            </a>
+                        <div class="card-body mx-3 my-3">
+                            <h3 class="card-title">ML Model results</h3><br>
+                            <p class="card-text fw-bold">Accuracy = {{ accuracy }}.<br>
+                                <br>ROC AUC Score = {{ ROCAUC }}.<br>
+                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/roc_curve.png') }}" class="rounded img-fluid" alt="ROC Curve"><br>
+                                <br>Confusion Matrix = <br>
+                                [{{ confusionMatrix[0][0] }}, {{ confusionMatrix[0][1] }}]<br>
+                                [{{ confusionMatrix[1][0] }}, {{ confusionMatrix[1][1] }}]<br>
+                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/confusionmatrix.png') }}" class="rounded img-fluid" alt="ROC Curve">
+                            </p><br>
+                            
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="card border-0 mx-auto mt-5" style="background-color: #F7F2FA;">
-                        <div class="card-body mx-3 my-3 text-center">
-                            <h3 class="card-title">Send Email</h3><br>
-                            <p class="card-text">Send emails to the patients having, High Risk = YES.</p><br>
-                            <a href="/sendemail/">
-                                <button class="btn btn-lg shadow-sm rounded-pill border-0 fw-bold" style="background-color: #D5E7F5;" type="button">
-                                    <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">email</span>Send email</p>
-                                </button>
-                            </a>
+
+                <div class="col-5 ms-3">
+                    <div class="row">
+                        <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
+                            <div class="card-body mx-3 my-3 text-center">
+                                <h3 class="card-title">Download</h3><br>
+                                <p class="card-text">Result is ready. Click download button below.</p><br>
+                                <a href="/return-file/">
+                                    <button class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #370B1E; background-color: #FFD8E4; width: 12rem;">
+                                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_download</span>Download</p>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-        </div> 
+                    <div class="row">
+                        <div class="card border-0 mx-auto mt-5" style="background-color: #F7F2FA;">
+                            <div class="card-body mx-3 my-3 text-center">
+                                <h3 class="card-title">Send Email</h3><br>
+                                <p class="card-text">Send emails to the patients having, High Risk = YES.</p><br>
+                                <a href="/sendemail/">
+                                    <button class="btn btn-lg shadow-sm rounded-pill border-0 fw-bold" style="background-color: #D5E7F5;" type="button">
+                                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">email</span>Send email</p>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
     </div>    
     
-
-    <!-- Footer -->
-    <div style="padding-top: 100px;">
-        <footer class="text-center text-lg-start" style="background-color: #F7F2FA;">
-            
-            <!-- Social media -->
-            <div class="row mx-4 pt-2">
-                <div class="col">
-                    Connect with us:
-                    <a href="https://github.com/anshulhedau10/fyp" target="_blank" class="text-dark mx-4">
-                        <i class="bi bi-github"></i>
-                    </a>
-                </div>
-                <div class="col text-center">
-                    This app is deployed on Heroku, a Salesforce Platform.
-                    <img src="{{ url_for('static', filename='images/salesforce.png') }}" style="width: 30px; height: 20px;">
-                </div>
-                <div class="col text-end">
-                    YCCE, Nagpur
-                </div>
-            </div>
-            <hr class="mb-2 mt-0 d-inline-block" style="width: 100%; background-color: rgba(0, 0, 0, 0.3); height: 1.5px"/>
-            <section class="d-flex justify-content-between">
-                    <div class="container text-center text-md-start">
-                        <div class="row">
-                            <div class="col-md-1 col-lg-4 col-xl-4 mx-auto mb-1 mb-md-0 text-center">
-                                <!-- Sections -->
-                                <h6 class="text-uppercase fw-bold">Sections</h6>
-                                <p><a class="text-reset me-2" href="/">Home</a>
-                                <a class="text-reset me-2" href="/about">About</a></p>
-                            </div>
-    
-                            <div class="col-md-1 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-1 text-center">
-                                <!-- Links -->
-                                <h6 class="text-uppercase fw-bold">Contact</h6>
-                                <p><a class="text-reset" href="https://www.linkedin.com/in/anshulhedau10/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Anshul</a>
-                                <a class="text-reset" href="https://www.linkedin.com/in/prajwalhatwar2799/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Prajwal</a>
-                                <a class="text-reset" href="https://www.linkedin.com/in/shreyas-rajurkar-1049aa1ba/" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Shreyas</a>
-                                <a class="text-reset" href="" target="_blank"><i class="bi bi-linkedin ms-2 me-1"></i>Juli</a></p>
-                            </div>
-                        </div>
-                    </div>
-            </section>
-            <div class="text-center p-3 small" style="background-color: rgba(0, 0, 0, 0.1)">© 2022 Copyright</div>
-        </footer>
-        </div>
-    
-    
-    <!--Script-->
-    <script>history.scrollRestoration = "manual"</script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='javascript/web.js') }}"></script>
-    <script>includeHTML();</script>
-</body>
-</html>
+{% endblock body %}

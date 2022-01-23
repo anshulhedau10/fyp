@@ -110,6 +110,7 @@ def sendemail():
     #to_send_email_list = []
     #users = []
     
+    # Clearing out graph images
     for file in os.scandir("static/images/graphs"):
         try:
             os.remove(file.path)
@@ -124,4 +125,4 @@ def sendemail():
     
     
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
