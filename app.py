@@ -5,6 +5,7 @@ import ml_logic
 from flask_mail import Mail, Message
 import pickle
 from pathlib import Path
+import threading
 
 base_path = Path(__file__)
 
@@ -29,7 +30,7 @@ app.config['UPLOAD_EXTENSIONS'] = [".csv"]
 
 mail = Mail(app)
 
-users = [['18010032@ycce.in', 'Anshul Hedau'], ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar'], ['julikhobragade923@gmail.com', 'Juli Khobragade']]#, ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
+users = [['18010032@ycce.in', 'Anshul Hedau']]#, ['hatwarprajwal@gmail.com', 'Prajwal Hatwar'], ['shreyasrajurkar13@gmail.com', 'Shreyas Rajurkar'], ['julikhobragade923@gmail.com', 'Juli Khobragade'], ['ganeshyenurkar@gmail.com', 'Ganesh Yenurkar']]
 result_filename = "result.csv"
 csv_file_format_filename = "csv_file_format.csv"
 input_data_filename = "input_data.csv"
@@ -68,6 +69,10 @@ def upload_file():
     
 @app.route("/downloadfile/", methods=["GET"]) #render download page
 def download_file():
+    # Calling maintenance function to clear graphs after 1 min
+    timer = threading.Timer(2*10.0, maintenance)
+    timer.start()
+
     return render_template("download.html", ROCAUC = ROCAUC, confusionMatrix = confusionMatrix, accuracy=accuracy)
 
 @app.route("/return-file/") #download result file
@@ -94,7 +99,7 @@ def sendemail():
         return "Email already sent!"
 
     with mail.connect() as conn:
-        for user in to_send_email_list:
+        for user in users:
             message = "Hello " + str(user[1])
             subject = "Fightcovid COVID-19 status."
             msg = Message(body=message, subject=subject, recipients=[user[0]])
@@ -107,19 +112,31 @@ def sendemail():
             
             conn.send(msg)
     
+
+    
     #to_send_email_list = []
     #users = []
     
+    # Clearing out graph images
+    # for file in os.scandir("static/images/graphs"):
+    #     try:
+    #         os.remove(file.path)
+    #     except:
+    #         print("Folder encountered")
+    
+    return "Sent"
+
+    
+    
+#@app.after_response
+def maintenance():
     # Clearing out graph images
     for file in os.scandir("static/images/graphs"):
         try:
             os.remove(file.path)
         except:
-            print("Folder encountered")
-    return "Sent"
-    
-#@app.after_response
-#def maintenance():
+            pass
+
     
 
     
