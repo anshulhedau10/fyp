@@ -6,35 +6,175 @@
         <div class="container fw-bold" style="font-size:40pt; text-align:center; margin-top:100px; color: #131F0D;">
             Find out COVID-19 risk prediction for patients.<br><br>       
         </div>
+
+        <div class="fw-bold" style="font-size:20pt; text-align: center;">
+            Choose any one
+        </div>
+
         <div class="container">
-            <div class="card border-0 col-sm-6 mx-auto" style="background-color: #FCF9F1; color: #131F0D;">
+
+            <!--Buttons to choose method-->
+            <div class="row m-5 text-center">
+                <div class="col">
+                    <button type="button" id="btnMultiple" class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #002117; background-color: #AEF0D6; width: 15rem;">
+                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">group</span>Multiple People</p>
+                    </button>
+                    <br/>
+                    <label class="form-label" for="btnMultiple">To get results of multiple people</label>
+                </div>
+
+                <div class="col">
+                    <button type="button" id="btnIndividual" class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #002117; background-color: #AEF0D6; width: 15rem;">
+                            <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">person</span>Individual People</p>
+                    </button>
+                    <br/>
+                    <label class="form-label" for="btnMultiple">To get result of an individual person</label>
+                </div>
+        
+            </div>
+
+
+            <!--Multiple people-->
+
+            <div class="card border-0 col-sm-6 mx-auto" style="background-color: #FCF9F1; color: #131F0D;" id="cardMultiple">
                 <div class="card-body mx-5 my-3">
                     <h3 class="card-title text-center fw-bold">Get the prediction
                     <!-- Button trigger modal -->
                     <button type="button" class="btn border-0 rounded-pill shadow-sm mx-3 my-0" style="background-color: #D9E7CB;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <span class="inline-icon2 material-icons-outlined">info</span>
                     </button></h3><br>
-                    <p class="card-text">1. Upload the csv file. Click i button for csv file format.
-                        <br>2. Click Upload button.
-                        <br>3. Wait for a minute. Let the ML model run.
-                        <br>4. Click Downlaod button<br><br>
+                    <p class="card-text">
+                        <ol>
+                            <li>Upload the csv file. Click i button for csv file format.</li>
+                            <li>Click Upload button.</li>
+                            <li>Wait for a minute. Let the ML model run.</li>
+                            <li>Click Downlaod button</li>
+                        </ol>
+                    
+                        <form action = "/1" method = "POST" enctype = "multipart/form-data" id="upload" onsubmit="uploadPressed()">
+                            <input type="file" oninvalid="alert('Please choose a csv file!');" class="form-control border-0 shadow-sm" style="color: #131F0D;" name="file" id="customFile" accept=".csv" required><br>
+                            <div class="text-center mt-5">
+                                <!--<input type="submit" value="Submit" onclick="myFunction()">-->
+                                <button type="submit" value="Submit" name="btnFetch" id="btnFetch" class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' onsubmit="uploadPressed()" style="color: #002117; background-color: #AEF0D6; width: 10rem;">
+                                    <div id="btnPress">
+                                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_upload</span>Upload</p>
+                                    </div>
+                                </button><br/>
+                            </div>
+                        </form> 
                     </p>
-                    <form action = "/" method = "POST" enctype = "multipart/form-data" id="upload" onsubmit="myFunction()">
-                        <input type="file" oninvalid="alert('Please choose a csv file!');" class="form-control border-0 shadow-sm" style="color: #131F0D;" name="file" id="customFile" accept=".csv" required><br>
-                        <div class="text-center mt-3">
-                            <!--<input type="submit" value="Submit" onclick="myFunction()">-->
-                            <button type="submit" value="Submit" id="btnFetch" class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' style="color: #002117; background-color: #AEF0D6; width: 10rem;">
-                                <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">file_upload</span>Upload</p>
-                            </button><br>
-                        </div>
-                    </form> 
                 </div>
             </div>
+
+            <!--Individual people-->
+
+            <div class="card border-0 col-sm-6 mx-auto" style="background-color: #f6fcf1; color: #131F0D;" id="cardIndividual">
+                <div class="card-body mx-5 my-3">
+                    <h3 class="card-title text-center fw-bold">Get the prediction</h3>
+                    <p class="card-text">
+                        <p class="m-3">Fill the details:<br/></p>
+                        <form action = "/2" method = "POST" id="uploadIndividual">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="userId" name="userId" placeholder="ID Number" required>
+                                <label for="floatingInput">ID (Mobile Number)</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="userName" name="userName" placeholder="FirstName LastName" required>
+                                <label for="floatingInput">Full Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="abcd@xyz.com" required>
+                                <label for="floatingInput">Email Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="userSex" name="userSex" aria-label="Floating label select example" required>
+                                    <option value="">--choose an option--</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                                <label for="userSex">Sex</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="userAgeGrp" name="userAgeGrp" aria-label="Floating label select example" required>
+                                    <option value="">--choose an option--</option>
+                                    <option value="1">1 Child (0-12 years)</option>
+                                    <option value="2">2 Adolescence (13-18 years)</option>
+                                    <option value="3">3 Adult (19-59 years)</option>
+                                    <option value="4">4 Senior Adult (60 years and above)</option>
+                                </select>
+                                <label for="userAgeGrp">Age Group</label>
+                            </div>
+
+                            <p class="m-3 mt-5">Select the options that apply to you:<br/></p>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="intubed" name="intubed">
+                                <label class="form-check-label" for="intubed">In Intubation?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="pneumonia" name="pneumonia">
+                                <label class="form-check-label" for="pneuomonia">Pneumonia?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="diabetes" name="diabetes">
+                                <label class="form-check-label" for="diabetes">Diabetes?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="copd" name="copd">
+                                <label class="form-check-label" for="copd">Chronic Obstructive Pulmonary Disease?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="asthma" name="asthma">
+                                <label class="form-check-label" for="asthma">Asthma?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="hypertension" name="hypertension">
+                                <label class="form-check-label" for="hypertension">Hypertension?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="otherDisease" name="otherDisease">
+                                <label class="form-check-label" for="otherDisease">Any Other Disease?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="cardiovascular" name="cardiovascular">
+                                <label class="form-check-label" for="cardiovascular">Cardiovascular Disease?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="obesity" name="obesity">
+                                <label class="form-check-label" for="obesity">Obesity?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="renalChronic" name="renalChronic">
+                                <label class="form-check-label" for="renalChronic">Renal Chronic Disease?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="tobacco" name="tobacco">
+                                <label class="form-check-label" for="tobacco">Consume Tobacco?</label>
+                            </div>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="covidRes" name="covidRes">
+                                <label class="form-check-label" for="covidRes">Covid Report Positive?</label>
+                            </div>
+                            
+
+                            <div class="text-center mt-5">
+                                <button type="submit" value="Submit2" name="btnFetch2" id="btnFetch2" class='btn btn-lg shadow-sm rounded-pill border-0 fw-bold' onsubmit="" style="color: #002117; background-color: #AEF0D6; width: 10rem;">
+                                    <div id="btnPress2">
+                                        <p class="small m-2"><span class="inline-icon2 material-icons-outlined mx-2">chevron_right</span>Submit</p>
+                                    </div>
+                                </button><br/>
+                            </div>
+                        </form>
+                    </p>
+                </div>
+            </div>
+
+
             <div class="text-center mt-5">
                 <img class="img-fluid" src="{{ url_for('static', filename='images/doctors.png') }}">
             </div>
         </div>
     </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -57,6 +197,23 @@
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary rounded-pill shadow-sm border-0" data-bs-dismiss="modal">Got it</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!--Upload Success Toast-->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="toast bg-white" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+            <div class="toast-header">
+                <span class="material-icons-outlined mx-2">check_circle_outline</span>
+                <strong class="me-auto">File Upload Success</strong>
+                <small>Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Your file is uploaded successfully. Please wait for few seconds.
             </div>
         </div>
     </div>
