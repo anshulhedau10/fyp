@@ -1,8 +1,7 @@
-from re import T
 from flask import Flask, render_template, request, redirect, url_for, send_file
 from matplotlib.style import use
-#from numpy import cov  
-import pandas as pd 
+# from numpy import cov  
+# import pandas as pd 
 from werkzeug.utils import secure_filename
 import os
 import ml_logic
@@ -72,7 +71,7 @@ def upload_file(formNo):
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], input_data_filename))
             print('Saved file successfully')
             to_send_email_list = ml_logic.machinelearning1() #returning list of emails of patients with high_risk=='YES'
-            #print(to_send_email_list[:5])
+            
             return redirect('/downloadfile') 
         else:
             return redirect(url_for('index'))
@@ -82,7 +81,6 @@ def upload_file(formNo):
         to_send_email_list = ml_logic.machinelearning2()
         print("Printing to send email list: ")
         print(to_send_email_list)
-        #return "".join(to_send_email_list[0])
         return redirect('/downloadfile') 
     
 
