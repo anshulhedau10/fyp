@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block body %}
+    
+    <div class="animated animatedFadeInUp fadeInUp">
+        <div class="container fw-bold" style="font-size:40pt; text-align:center; margin-top:100px; color: #041E49;">
+            India COVID-19 Stats.<br><br>       
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 mx-auto">
+                    <div class="card border-0 rounded-pill" style="background-color: #EEF4F9; color: #041E49;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Active</h3>
+                            <h4 class="card-text fw-bold">{{ active }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mx-auto">
+                    <div class="card border-0 rounded-pill" style="background-color: #f0f9ee; color: #124904;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Discharged</h3>
+                            <h4 class="card-text fw-bold">{{ discharged }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mx-auto">
+                    <div class="card border-0 rounded-pill" style="background-color: #f9eeee; color: #490404;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Deaths</h3>
+                            <h4 class="card-text fw-bold">{{ deaths }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-5 mx-auto">
+                    <div class="card border-0 rounded-pill" style="background-color: #f4eef9; color: #1e0449;">
+                        <div class="card-body mx-3 my-3 text-center">
+                            <h3 class="card-title">Total Vaccinated</h3>
+                            <h4 class="card-text fw-bold">{{ vaccinated }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6 mx-auto">
+                    <p>* COVID-19 INDIA as on : 12 March 2022, 08:00 IST (GMT+5:30)</p>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    
+{% endblock body %}
