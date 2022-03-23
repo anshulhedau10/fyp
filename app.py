@@ -10,6 +10,8 @@ from flask_mail import Mail, Message
 import pickle
 from pathlib import Path
 import threading
+import requests
+import bs4
 
 base_path = Path(__file__)
 
@@ -110,6 +112,43 @@ def downloadcsv():
         return send_file(csvfile, as_attachment=True)
     except:
         return 'csv file format is not available!'
+
+@app.route('/covid_stats') #display covid stats
+def covid_stats():
+    active, discharged, deaths, vaccinated, updatedOn = '', '', '', '', ''
+
+    URL = 'https://www.mohfw.gov.in/'
+    response = requests.get(URL).content
+    soup = bs4.BeautifulSoup(response, 'html.parser')
+
+    stats_section = soup.findAll('section', {'id':'site-dashboard'})
+    strong_list = stats_section[0].find_all('strong')
+    for ele in strong_list[2]:
+        if type(ele) == bs4.element.NavigableString:
+            active  = str(ele)
+            print(active)
+            break
+
+    for ele in strong_list[5]:
+        if type(ele) == bs4.element.NavigableString:
+            discharged = str(ele)
+            print(discharged)
+            break
+
+    for ele in strong_list[8]:
+        if type(ele) == bs4.element.NavigableString:
+            deaths = str(ele)
+            print(deaths)
+            break
+
+    vacc_stats = soup.findAll('span', {'class':'coviddata'})
+    for ele in vacc_stats[0]:
+        if type(ele) == bs4.element.NavigableString:
+            vaccinated = str(ele)
+            print(vaccinated)
+            break
+
+    return render_template('covid_stats.html', active = active, discharged = discharged, deaths = deaths, vaccinated = vaccinated)
 
 
 @app.route('/sendemail/') #send email
