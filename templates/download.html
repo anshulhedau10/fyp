@@ -11,13 +11,15 @@
                     <div class="card border-0 mx-auto" style="background-color: #F7F2FA;">
                         <div class="card-body mx-3 my-3">
                             <h3 class="card-title">ML Model results</h3><br>
-                            <p class="card-text fw-bold">Accuracy = {{ accuracy }}.<br>
+                            <p class="card-text fw-bold">
+                                Algorithm Used = Extreme Gradient Boosting (XG Boost).<br>
+                                <br>Accuracy = {{ accuracy }}.<br>
                                 <br>ROC AUC Score = {{ ROCAUC }}.<br>
-                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/roc_curve.png') }}" class="rounded img-fluid" alt="ROC Curve"><br>
+                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/ROC_Curve_XGB.png') }}" class="rounded img-fluid" alt="ROC Curve Random Forest"><br>
                                 <br>Confusion Matrix = <br>
                                 [{{ confusionMatrix[0][0] }}, {{ confusionMatrix[0][1] }}]<br>
                                 [{{ confusionMatrix[1][0] }}, {{ confusionMatrix[1][1] }}]<br>
-                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/confusionmatrix.png') }}" class="rounded img-fluid" alt="ROC Curve">
+                                <br><img class="img-fluid" src="{{ url_for('static', filename='images/Confusion_Matrix_XGB.png') }}" class="rounded img-fluid" alt="Confusion Matrix Random Forest">
                             </p><br>
                             
                         </div>

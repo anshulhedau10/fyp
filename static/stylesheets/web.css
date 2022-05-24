@@ -11,6 +11,10 @@
         vertical-align: bottom;
         font-size: 26px !important;
     }
+    .inline-icon3 {
+        vertical-align:middle;
+        font-size: 18px !important;
+    }
     @keyframes fadeInUp {
         from {
             transform: translate3d(0,40px,0)

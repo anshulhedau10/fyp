@@ -4,7 +4,7 @@ from matplotlib.style import use
 # import pandas as pd 
 from werkzeug.utils import secure_filename
 import os
-import ml_logic
+import ml_logic_rf, ml_logic_xgb
 from flask_mail import Mail, Message
 import pickle
 from pathlib import Path
@@ -41,10 +41,10 @@ csv_file_format_filename = 'csv_file_format.csv'
 input_data_filename = 'input_data.csv'
 to_send_email_list = [] #format: [['email', 'name'], ... ]
 
-ROCAUC = pickle.load(open((base_path/'../pickle_global/roc_auc.pkl').resolve(),'rb'))
-confusionMatrix = pickle.load(open((base_path/'../pickle_global/cnf_matrix.pkl').resolve(),'rb'))
-report = pickle.load(open((base_path/'../pickle_global/report.pkl').resolve(),'rb'))
-accuracy = pickle.load(open((base_path/'../pickle_global/accuracy.pkl').resolve(),'rb'))
+ROCAUC = pickle.load(open((base_path/'../pickle_global/xgb_roc_auc.pkl').resolve(),'rb'))
+confusionMatrix = pickle.load(open((base_path/'../pickle_global/xgb_cnf_matrix.pkl').resolve(),'rb'))
+report = pickle.load(open((base_path/'../pickle_global/xgb_report.pkl').resolve(),'rb'))
+accuracy = pickle.load(open((base_path/'../pickle_global/xgb_accuracy.pkl').resolve(),'rb'))
 
 @app.route('/') #render home page
 def index():
@@ -70,7 +70,7 @@ def upload_file(formNo):
 
             uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], input_data_filename))
             print('Saved file successfully')
-            to_send_email_list = ml_logic.machinelearning1() #returning list of emails of patients with high_risk=='YES'
+            to_send_email_list = ml_logic_xgb.machinelearning1() #returning list of emails of patients with high_risk=='YES'
             
             return redirect('/downloadfile') 
         else:
@@ -78,7 +78,7 @@ def upload_file(formNo):
         
     elif formNo == 2:
 
-        to_send_email_list = ml_logic.machinelearning2()
+        to_send_email_list = ml_logic_xgb.machinelearning2()
         print("Printing to send email list: ")
         print(to_send_email_list)
         return redirect('/downloadfile') 
@@ -145,8 +145,19 @@ def covid_stats():
             vaccinated = str(ele)
             print(vaccinated)
             break
+    
+    updatedOn_stats = stats_section[0].find_all('div', {'class':'col-xs-12'})
+    updatedOn_stats1 = updatedOn_stats[0].find_all('h5')
+    t = str((list(updatedOn_stats1))[0])
+    t = t.replace('<h5>', '')
+    t = t.replace('</h5>', '')
+    t = t.replace('<br/>', '')
+    t = t.replace('<span>', '')
+    t = t.replace('</span>', '')
+    t = t.replace('(↑↓ Status change since yesterday)', '')
+    updatedOn = t
 
-    return render_template('covid_stats.html', active = active, discharged = discharged, deaths = deaths, vaccinated = vaccinated)
+    return render_template('covid_stats.html', active = active, discharged = discharged, deaths = deaths, vaccinated = vaccinated, updatedOn = updatedOn)
 
 
 @app.route('/sendemail/') #send email

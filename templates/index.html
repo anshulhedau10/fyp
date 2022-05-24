@@ -105,7 +105,10 @@
                                 <label for="userAgeGrp">Age Group</label>
                             </div>
 
-                            <p class="m-3 mt-5">Select the options that apply to you:<br/></p>
+                            <p class="m-3 mt-5">Select the options that apply to you:
+                            <a href="#infoCard"><button type="button" class="btn border-0 rounded-pill shadow-sm mx-3 my-0" style="background-color: #D9E7CB;">
+                                <span class="inline-icon2 material-icons-outlined">info</span>
+                            </button></a><br/></p>
                             <div class="form-check form-switch mb-2">
                                 <input class="form-check-input" type="checkbox" id="intubed" name="intubed">
                                 <label class="form-check-label" for="intubed">In Intubation?</label>
@@ -168,9 +171,31 @@
                 </div>
             </div>
 
-
-            <div class="text-center mt-5">
+            <div class="text-center my-5">
                 <img class="img-fluid" src="{{ url_for('static', filename='images/doctors.png') }}">
+            </div>
+
+            <!--Info Card-->
+            <div class="card border-0 col-sm-10 mx-auto" style="background-color: #fff1fd; color: #1E1B1D;" id="infoCard">
+                <div class="card-body mx-sm-5 my-3">
+                    <h3 class="card-title text-center fw-bold"><span class="material-icons-outlined mx-2">tips_and_updates</span>Info Card</h3><br>
+                    <p class="card-text">
+                        <ul>
+                            <li><strong>Intubation <a href="https://en.wikipedia.org/wiki/Intubation" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is in intubation / ventilation ?</li>
+                            <li><strong>Pneumonia <a href="https://en.wikipedia.org/wiki/Pneumonia" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is suffering from pneumonia ?</li>
+                            <li><strong>Diabetes <a href="https://en.wikipedia.org/wiki/Diabetes" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is diagnosed with diabetes ?</li>
+                            <li><strong>Chronic Obstructive Pulmonary Disease <a href="https://en.wikipedia.org/wiki/Chronic_obstructive_pulmonary_disease" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is having any lung disease resulting in breathing problem ?</li>
+                            <li><strong>Asthma <a href="https://en.wikipedia.org/wiki/Asthma" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person have respiratory problem or asthma ?</li>
+                            <li><strong>Hypertension <a href="https://en.wikipedia.org/wiki/Hypertension" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is having hypertension ?</li>
+                            <li><strong>Any Other Disease <a href="https://en.wikipedia.org/wiki/Lists_of_diseases" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is having any other disease apart from listed ones ?</li>
+                            <li><strong>Cardiovascular Disease <a href="https://en.wikipedia.org/wiki/Cardiovascular_disease" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is having any kind of heart related disease ?</li>
+                            <li><strong>Obesity <a href="https://en.wikipedia.org/wiki/Obesity" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is obese / have excessive body fat ?</li>
+                            <li><strong>Renal Chronic Disease <a href="https://en.wikipedia.org/wiki/Chronic_kidney_disease" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is suffering from kidney failure ?</li>
+                            <li><strong>Consume Tobacco <a href="https://en.wikipedia.org/wiki/Tobacco_smoking" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person consume tobacco on regular basis ?</li>
+                            <li><strong>Covid Report Positive <a href="https://en.wikipedia.org/wiki/COVID-19" target="_blank"><span class="inline-icon3 material-icons-outlined">open_in_new</span></a> :</strong> Whether person is identified as COVID positive ?</li>
+                        </ul>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

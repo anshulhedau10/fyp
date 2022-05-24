@@ -23,7 +23,7 @@ def dataProcess(input_data):
     rf = pickle.load(open((base_path/"../pickle_global/rf_model.pkl").resolve(),'rb'))
 
     # Loading feature selected variables
-    selected_feat = pickle.load(open((base_path/"../pickle_global/selected_feat.pkl").resolve(),'rb'))
+    selected_feat = pickle.load(open((base_path/"../pickle_global/rf_selected_feat.pkl").resolve(),'rb'))
 
     input_data1 = input_data.copy(deep=True)
     id_patient = input_data.pop("id")

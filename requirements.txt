@@ -37,3 +37,4 @@ threadpoolctl==3.0.0
 tomli==1.2.2
 urllib3==1.26.8
 Werkzeug==2.0.2
+xgboost==1.6.0
