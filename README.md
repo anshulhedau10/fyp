@@ -9,7 +9,7 @@
 
 # How to run this app on your local machine:
 **Prerequisites:**
-- Python >=3.8.3
+- Python >=3.9.6
 - Git >=2.33.1.windows.1
 
 1. **PROJECT SETUP**  
