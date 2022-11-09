@@ -9,21 +9,21 @@
 
 ## Screenshots
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot1.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot1.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot2.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot2.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot3.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot3.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot4.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot4.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot5.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot5.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot6.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot6.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot7.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot7.jpg?raw=true)
 
-![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot8.png?raw=true)
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot8.jpg?raw=true)
 
 # How to run this app on your local machine:
 **Prerequisites:**
