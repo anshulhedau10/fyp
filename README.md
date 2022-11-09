@@ -4,8 +4,26 @@
 - Made by Anshul Hedau, Prajwal Hatwar, Shreyas Rajurkar, Juli Khobragade.
 
 - The objective of this project is to predict if a COVID-19 patient will have a high risk of death in near future.
-- The machine learning model is based on Random Forest Classifier, which takes initial health data of the patient as input.
+- Two machine learning models were used i.e., Random Forest Classifier and XG Boost which takes initial health parameters of the patient as input and gives a boolean result whether patient is at high risk or not.
 - The project is a web app built using python flask and gunicorn.
+
+## Screenshots
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot1.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot2.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot3.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot4.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot5.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot6.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot7.png?raw=true)
+
+![alt text](https://github.com/anshulhedau10/fyp/blob/main/static/images/Screenshot8.png?raw=true)
 
 # How to run this app on your local machine:
 **Prerequisites:**
