@@ -18,13 +18,13 @@ app = Flask(__name__)
 
 # configuration
 app.config['DEBUG'] = False
-app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_SERVER']='smtp.office365.com'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'finalyrproject001@gmail.com'
-app.config['MAIL_PASSWORD'] = '6264277717'
+app.config['MAIL_USERNAME'] = 'anshul.demo@outlook.com'
+app.config['MAIL_PASSWORD'] = 'Anshul@12345'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_DEFAULT_SENDER'] = ('FIGHT COVID', 'finalyrproject001@gmail.com')
+app.config['MAIL_DEFAULT_SENDER'] = ('FIGHT COVID', 'anshul.demo@outlook.com')
 app.config['MAIL_ASCII_ATTACHMENTS'] = True
 app.config['MAIL_MAX_EMAILS'] = 2
 app.config['MAIL_SUPPRESS_SEND '] = False
@@ -183,6 +183,10 @@ def sendemail():
             except:
                 return 'Please try again!'
             
+            # change message ID
+            msg.msgId = msg.msgId.split('@')[0] + '@short_string'  # for instance your domain name
+            
+            #send
             conn.send(msg)
     
 
