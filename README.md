@@ -1,7 +1,7 @@
 # Final Year Project ![GitHub language count](https://img.shields.io/github/languages/count/anshulhedau10/fyp?color=green)
 
 ## Title: Predicting high risk COVID-19 patients.
-- Made by Anshul Hedau, Prajwal Hatwar, Shreyas Rajurkar, Juli Khobragade.
+- Made by Ganesh K. Yenurkar, Anshul Hedau, Prajwal Hatwar, Shreyas Rajurkar, Juli Khobragade.
 
 - The objective of this project is to predict if a COVID-19 patient will have a high risk of death in near future.
 - Two machine learning models were used i.e., Random Forest Classifier and XG Boost which takes initial health parameters of the patient as input and gives a boolean result whether patient is at high risk or not.
